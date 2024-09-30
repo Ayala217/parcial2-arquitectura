@@ -1,4 +1,4 @@
-package co.edu.unisabana.parcial;
+package co.edu.unisabana.parcial.logica;
 
 
 import co.edu.unisabana.parcial.controller.dto.CheckpointDTO;
@@ -45,6 +45,7 @@ class CheckpointServiceTest {
         CheckpointDTO checkpointDTO = new CheckpointDTO("facility","driver",15);
         verify(checkpointPort,times(1)).saveCheckin(any(Checkin.class));
     }
+
     @Test
     void GivenNullLastCheckin_WhenCheckout_ThenThrowIllegalArgumentExeption(){
 
