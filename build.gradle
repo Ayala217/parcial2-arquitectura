@@ -3,6 +3,7 @@ plugins {
 	id 'org.springframework.boot' version '2.7.10'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 	id 'jacoco'
+	id 'org.sonarqube' version '4.0.0.2929'
 }
 
 group = 'co.edu.unisabana'
@@ -29,15 +30,29 @@ test {
 jacocoTestReport {
 	dependsOn test // tests are required to run before generating the report
 
+	reports {
+		xml.required.set(true)
+		html.required.set(true)
+	}
 	afterEvaluate {
 		classDirectories.setFrom(files(classDirectories.files.collect {
 			fileTree(dir: it, exclude: [
-					"**/dto/**",
-					"**/entity/*",
-					"**/model/*",
-					"**/jpa/*"
+					"/dto/",
+					"/entity/*",
+					"/model/*",
+					"/jpa/*",
+					"/ParcialApplication.java"
 			])
 		}))
+	}
+}
+
+sonarqube {
+	properties {
+		property "sonar.host.url", "http://157.173.122.1:9000"
+		property "sonar.login", "squ_12588c140fc2012b9317233038f6c837974b92fd"
+		property "sonar.jacoco.reportPaths", "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
+
 	}
 }
 
