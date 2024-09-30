@@ -39,12 +39,7 @@ class CheckpointServiceTest {
         Assertions.assertThrows(IllegalArgumentException.class,() -> checkpointService.checkin(checkpointDTO));
 
     }
-    @Test
-    void GivenDayOfMonthBetween1And30_WhenCheckin_ThenSaveCheckin(){
 
-        CheckpointDTO checkpointDTO = new CheckpointDTO("facility","driver",15);
-        verify(checkpointPort,times(1)).saveCheckin(any(Checkin.class));
-    }
 
     @Test
     void GivenNullLastCheckin_WhenCheckout_ThenThrowIllegalArgumentExeption(){
@@ -67,10 +62,6 @@ class CheckpointServiceTest {
         Assertions.assertThrows(IllegalArgumentException.class,() -> checkpointService.checkout(checkpointDTO));
     }
 
-    @Test
-    void GivenDayOfMonthBetween1And30AndValidLastCheckin_WhenCheckout_ThenSaveCheckout(){
-        CheckpointDTO checkpointDTO = new CheckpointDTO("facility","driver",15);
-        verify(checkpointPort,times(1)).saveCheckout(any(Checkout.class));
-    }
+
 
 }

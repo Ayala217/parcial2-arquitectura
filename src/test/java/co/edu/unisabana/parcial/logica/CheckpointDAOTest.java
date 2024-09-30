@@ -7,9 +7,11 @@ import co.edu.unisabana.parcial.service.model.Checkin;
 import co.edu.unisabana.parcial.service.model.Checkout;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
@@ -17,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 class CheckpointDAOTest {
 
     @Mock
@@ -25,10 +28,7 @@ class CheckpointDAOTest {
     @InjectMocks
     private CheckpointDAO checkpointDAO;
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
+
 
     @Test
     void saveCheckin_shouldCallRepositorySave() {
